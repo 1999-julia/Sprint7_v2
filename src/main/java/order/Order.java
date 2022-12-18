@@ -1,32 +1,32 @@
-import java.util.List;
+package order;
 
 public class Order {
-
 
     private String firstName;
     private String lastName;
     private String address;
     private String metroStation;
     private String phone;
-    private int rentTime;
+    private String rentTime;
     private String deliveryDate;
     private String comment;
-    private List<String> color;
+    private String[] color;
 
     public Order() {
     }
-    public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, List<String> color) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.metroStation = metroStation;
-        this.phone = phone;
-        this.rentTime = rentTime;
-        this.deliveryDate = deliveryDate;
-        this.comment = comment;
+
+    public Order (String[] color) {
+
+        this.firstName = "Юлия";
+        this.lastName = "Евтеева";
+        this.address = "Ленинская Слобода, 19";
+        this.metroStation = "Перово";
+        this.phone = "+7900000000000";
+        this.rentTime = "6";
+        this.deliveryDate = "2022-12-27";
+        this.comment = "PingPong101";
         this.color = color;
     }
-
     public String getFirstName() {
         return firstName;
     }
@@ -67,11 +67,11 @@ public class Order {
         this.phone = phone;
     }
 
-    public int getRentTime() {
+    public String getRentTime() {
         return rentTime;
     }
 
-    public void setRentTime(int rentTime) {
+    public void setRentTime(String rentTime) {
         this.rentTime = rentTime;
     }
 
@@ -91,11 +91,11 @@ public class Order {
         this.comment = comment;
     }
 
-    public List<String> getColor() {
+    public String[] getColor() {
         return color;
     }
 
-    public void setColor(List<String> color) {
+    public void setColor(String[] color) {
         this.color = color;
     }
 }

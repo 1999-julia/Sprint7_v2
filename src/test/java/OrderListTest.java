@@ -1,38 +1,22 @@
-import io.restassured.RestAssured;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.notNullValue;
+import io.restassured.response.ValidatableResponse;
+import org.junit.Test;
+import order.OrderClient;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
 public class OrderListTest {
-    @BeforeClass
-    public static void log() {
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-    }
-    @Before
-    public void setUp() {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
-        RestAssured.basePath = "/api/v1/orders";
-    }
     @Test
     @DisplayName("Get order list")
     @Description("Test for getting successfully response of order list is not empty")
-    public void getOrderList(){
-        String json = "{\"courierId\": \"\", \"nearestStation\": \"\", \"limit\": \"\", \"page\": \"\"}";
-        given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(json)
-                .when()
-                .get()
-                .then().statusCode(200)
-                .and()
-                .assertThat().body("orders", notNullValue());
+    public void getOrderList() {
+        OrderClient orderClient = new OrderClient();
+        ValidatableResponse responseOrderList = orderClient.getOrderList();
+        responseOrderList.assertThat()
+                .statusCode(200)
+                .body("orders", notNullValue());
     }
 }
+
 
